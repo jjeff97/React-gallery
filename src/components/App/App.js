@@ -1,7 +1,35 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import axios from 'axios';
 class App extends Component {
+
+  state = {
+    galleryList: [],
+  };
+
+  componentDidMount() {
+    console.log('MOUNTED COMPONENT');
+    this.getPhotos();
+  }
+
+  getPhotos = () => {
+    axios({
+      method: 'GET',
+      url: '/gallery',
+    })
+    // axios.get('/gallery')
+    .then((response) => {
+      console.log('GET gallery: ', response);
+      this.setState({
+        songsList: response.data,
+      });
+    })
+    .catch((err) => {
+      console.log('GET error: ', err);
+      alert('You Failed!!!');
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -10,7 +38,7 @@ class App extends Component {
         </header>
         <br/>
         <p>Gallery goes here</p>
-        <img src="images/goat_small.jpg"/>
+        <img src="images/tiger.jpg"/>
       </div>
     );
   }
