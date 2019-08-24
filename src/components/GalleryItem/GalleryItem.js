@@ -19,8 +19,11 @@ class GalleryItem extends Component {
     }
 
     clickChangeHandler = (event) => {
-        this.revealDescription(this.props.itemData.id);
+        
+        this.revealDescription(this.props.itemData.description);
+        
     }
+
 
     render() {
         
