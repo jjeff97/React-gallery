@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import GalleryList from '../GalleryList/GalleryList';
 class App extends Component {
 
   state = {
@@ -9,10 +10,10 @@ class App extends Component {
 
   componentDidMount() {
     console.log('MOUNTED COMPONENT');
-    this.getPhotos();
+    this.getGallery();
   }
 
-  getPhotos = () => {
+  getGallery = () => {
     axios({
       method: 'GET',
       url: '/gallery',
@@ -21,7 +22,7 @@ class App extends Component {
     .then((response) => {
       console.log('GET gallery: ', response);
       this.setState({
-        songsList: response.data,
+        galleryList: response.data,
       });
     })
     .catch((err) => {
@@ -37,7 +38,7 @@ class App extends Component {
           <h1 className="App-title">Gallery of my life</h1>
         </header>
         <br/>
-        <p>Gallery goes here</p>
+        <GalleryList getGalleryCallback={this.getGallery} list={this.state.galleryList}/>
         <img src="images/tiger.jpg"/>
       </div>
     );

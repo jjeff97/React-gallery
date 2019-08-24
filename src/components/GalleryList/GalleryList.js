@@ -3,18 +3,18 @@ import GalleryItem from '../GalleryItem/GalleryItem';
 
 class GalleryList extends Component {
     render() {
-        const GalleryElements = this.props.list.map((path, descriptions) => {
+        const galleryElements = this.props.list.map((gallery, index) => {
             return  <GalleryItem
                         key={index}
-                        getGalleriesCallback={this.props.getGalleriesCallback}
+                        getGalleryCallback={this.props.getGalleryCallback}
                         itemData={gallery}
                     />;
         });
-        console.log(GalleryElements);
+        console.log(galleryElements);
 
         return (
             <ul>
-                {GalleryElements}
+                {galleryElements}
             </ul>
         );
     }
