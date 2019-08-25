@@ -7,53 +7,52 @@ class GalleryItem extends Component {
             method: 'PUT',
             url: `/gallery/${galleryId}`,
         })
-        
-        .then((response) => {
-            console.log('GET gallery: ', response);
-            this.props.getGalleryCallback()
-        })
-        .catch((err) => {
-            console.log('GET error: ', err);
-            alert('You Failed!!!');
-        });
+
+            .then((response) => {
+                console.log('GET gallery: ', response);
+                this.props.getGalleryCallback()
+            })
+            .catch((err) => {
+                console.log('GET error: ', err);
+                alert('You Failed!!!');
+            });
+    }
+    state = {
+        descriptionToggle: false
     }
 
     clickChangeHandler = (event) => {
-        
-        this.revealDescription(this.props.itemData.description);
-        
+        if (this.state.descriptionToggle) {
+            this.setState({
+                descriptionToggle: false
+            })
+        } else {
+            this.setState({
+                descriptionToggle: true
+            })
+        }
+
+
     }
-    constructor (){
-        super()
-        this.state = {
-            description: true
-        };
-        
-    }
-    descriptionToggle() {
-        this.setState({
-            description: !this.state.description
-        })
-    }
+
+    
     render() {
         let description = <div></div>;
 
         if (this.state.descriptionToggle) {
-           let description = <p>{this. props.itemData. description}</p>
+            let description = <p>{this.props.itemData.description}</p>
         };
-        
+
         return (
-            <div className="photoBox">
-                <img src ={this.props.itemData.path} />
+            <li>Photo: {this.props.itemData.description}
+                <img src={this.props.itemData.path} />
                 <button
-                    onCLick={this.clickChangeHandler.bind(this)}
-                 >
-                     Like
+                    onCLick={this.clickChangeHandler}
+                >
+                    Like
                 </button>
                 {description}
-                 
-        
-            </div>
+            </li>
         );
     }
 }
