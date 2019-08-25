@@ -18,7 +18,16 @@ class GalleryItem extends Component {
             });
     }
     state = {
+        count: 0,
         descriptionToggle: false
+    }
+
+
+    likeHandler = (event) => {
+        this.setState({
+            count: !this.state.hide
+        })
+        
     }
 
     clickChangeHandler = (event) => {
@@ -35,21 +44,22 @@ class GalleryItem extends Component {
 
     }
 
+
     
     render() {
         let description = <div></div>;
 
         if (this.state.descriptionToggle) {
-            let description = <p>{this.props.itemData.description}</p>
-        };
+            description = <p>{this.props.itemData.descriptionToggle}</p>
+        } 
 
         return (
             <li>Photo: {this.props.itemData.description}
                 <img src={this.props.itemData.path} />
                 <button
-                    onCLick={this.clickChangeHandler}
+                    onClick={() => {this.setState({count: this.state.count +1})}}
                 >
-                    Like
+                    Like: {this.state.count}
                 </button>
                 {description}
             </li>
