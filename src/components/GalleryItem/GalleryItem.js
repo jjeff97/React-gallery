@@ -23,18 +23,37 @@ class GalleryItem extends Component {
         this.revealDescription(this.props.itemData.description);
         
     }
-
-
+    constructor (){
+        super()
+        this.state = {
+            description: true
+        };
+        
+    }
+    descriptionToggle() {
+        this.setState({
+            description: !this.state.description
+        })
+    }
     render() {
+        let description = <div></div>;
+
+        if (this.state.descriptionToggle) {
+           let description = <p>{this. props.itemData. description}</p>
+        };
         
         return (
-            <li>Photo: {this.props.itemData.path}
+            <div className="photoBox">
+                <img src ={this.props.itemData.path} />
                 <button
-                    onClick={this.clickChangeHandler}
-                >
-                    Like
+                    onCLick={this.clickChangeHandler.bind(this)}
+                 >
+                     Like
                 </button>
-            </li>
+                {description}
+                 
+        
+            </div>
         );
     }
 }

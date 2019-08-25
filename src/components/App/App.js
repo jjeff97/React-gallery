@@ -39,7 +39,7 @@ class App extends Component {
         </header>
         <br/>
         <GalleryList getGalleryCallback={this.getGallery} list={this.state.galleryList}/>
-        <img src="images/tiger.jpg"/>
+        
       </div>
     );
   }
