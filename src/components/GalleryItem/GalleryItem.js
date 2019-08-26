@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { threadId } from 'worker_threads';
+
 
 class GalleryItem extends Component {
     revealDescription(galleryId) {
         axios({
             method: 'PUT',
-            url: `/gallery/${galleryId}`,
+            url: `/gallery/count/${galleryId}`,
         })
 
             .then((response) => {
@@ -55,8 +55,8 @@ class GalleryItem extends Component {
         } 
 
         return (
-            <div> {this.props.itemData.description}
-               <img src={this.props.itemData.path} />
+            <div> 
+               <button><img src={this.props.itemData.path} onClick={this.clickChangeHandler} /></button>
                 <button
                     onClick={() => {this.setState({count: this.state.count +1})}}
                 >
