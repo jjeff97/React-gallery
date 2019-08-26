@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { threadId } from 'worker_threads';
 
 class GalleryItem extends Component {
     revealDescription(galleryId) {
@@ -50,19 +51,19 @@ class GalleryItem extends Component {
         let description = <div></div>;
 
         if (this.state.descriptionToggle) {
-            description = <p>{this.props.itemData.descriptionToggle}</p>
+            description = <p>{this.props.itemData.description}</p>
         } 
 
         return (
-            <li>Photo: {this.props.itemData.description}
-                <img src={this.props.itemData.path} />
+            <div> {this.props.itemData.description}
+               <img src={this.props.itemData.path} />
                 <button
                     onClick={() => {this.setState({count: this.state.count +1})}}
                 >
                     Like: {this.state.count}
                 </button>
                 {description}
-            </li>
+            </div>
         );
     }
 }
